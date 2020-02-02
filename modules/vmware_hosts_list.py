@@ -18,7 +18,7 @@ def main():
     module_args = dict(
         vcenter=dict(type='str', required=True),
         username=dict(type='str', required=True),
-        password=dict(type='str', required=True)
+        password=dict(type='str', required=True, no_log=True)
         )
     module = AnsibleModule(
         argument_spec=module_args,
