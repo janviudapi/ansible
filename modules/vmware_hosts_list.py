@@ -5,33 +5,32 @@ import json
 import sys
 from pyVim.connect import SmartConnect
 try:
-        from pyVmomi import vim
+    from pyVmomi import vim
 except Exception as e:
-        print(e)
-        print("Please install pyVmomi and try again")
-        sys.exit(1)
+    print(e)
+    print("Please install pyVmomi and try again")
+    sys.exit(1)
 import ssl
-#import configparser
 from ansible.module_utils.basic import *
 
 def main():
-        #module = AnsibleModule(argument_spec={})
+    #module = AnsibleModule(argument_spec={})
 	module_args = dict(
             vcenter=dict(type='str', required=True),
             username=dict(type='str', required=True),
             password=dict(type='str', required=True)
         )
 	module = AnsibleModule(
-				 argument_spec=module_args,
-				 supports_check_mode=True
-			 )
-	#response = {'HOST': module.params['host']}    
-#        vcenter = mainresponse['HOST']
+		    argument_spec=module_args,
+			supports_check_mode=True
+	    )
+	    #response = {'HOST': module.params['host']}    
+        #vcenter = mainresponse['HOST']
         vcenter = module.params['vcenter']
         username = module.params['username']
         password = module.params['password']
-#https://www.programcreek.com/python/example/94933/ansible.module_utils.basic.AnsibleModule
-#http://devopstechie.com/create-custom-ansible-module/
+        #https://www.programcreek.com/python/example/94933/ansible.module_utils.basic.AnsibleModule
+        #http://devopstechie.com/create-custom-ansible-module/
         #Get all the Clusters from vCenter invetory and printing its name
         #Below is Python 2.7.x code, which can be easily converted to python 3.x version
         
@@ -86,6 +85,6 @@ def main():
         module.exit_json(changed=True, meta=response)
 
 if __name__== "__main__":
-        main()
+    main()
 
 #ansible -i test.py all --list-hosts
