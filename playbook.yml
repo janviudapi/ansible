@@ -1,8 +1,8 @@
 ---
-- name: Test hello module
+- name: Test vmware esxi host inventory module
   hosts: localhost
   gather_facts: false
-  connection: local
+
 
   tasks:
     - name: Include secret files 
@@ -10,13 +10,14 @@
         file: secrets.yml
         name: secret
 
-    - name: run the new hello module
+    - name: Run vmware esxi host inventory module
       vmware_hosts_list: vcenter="{{secret.vcenter}}" username="{{secret.username}}" password="{{secret.password}}"
-      register: helloout
+      register: esxi_list
+      no_log: true
 
-    - name: dump test output
+    - name: Get vmware esxi host inventory module
       debug:
-        msg: '{{ helloout }}'
+        msg: '{{ esxi_list }}'
 
 
 #ansible-playbook -i esxi_hosts_list.py playbook.yml
