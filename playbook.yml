@@ -13,7 +13,6 @@
     - name: Run vmware esxi host inventory module
       vmware_hosts_list: vcenter="{{secret.vcenter}}" username="{{secret.username}}" password="{{secret.password}}"
       register: esxi_list
-      no_log: true
 
     - name: Get vmware esxi host inventory module
       debug:
