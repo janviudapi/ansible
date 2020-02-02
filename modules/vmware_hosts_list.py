@@ -24,8 +24,8 @@ def main():
         argument_spec=module_args,
         supports_check_mode=True
         )
-	    #response = {'HOST': module.params['host']}    
-        #vcenter = mainresponse['HOST']
+    #response = {'HOST': module.params['host']}    
+    #vcenter = mainresponse['HOST']
     vcenter = module.params['vcenter']
     username = module.params['username']
     password = module.params['password']
