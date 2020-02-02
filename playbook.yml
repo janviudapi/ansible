@@ -2,7 +2,7 @@
 - name: Test vmware esxi host inventory module
   hosts: localhost
   gather_facts: false
-
+  connection: local
 
   tasks:
     - name: Include secret files 
@@ -17,6 +17,5 @@
     - name: Get vmware esxi host inventory module
       debug:
         msg: '{{ esxi_list }}'
-
 
 #ansible-playbook -i esxi_hosts_list.py playbook.yml
