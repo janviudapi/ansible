@@ -1,0 +1,22 @@
+---
+- name: Test hello module
+  hosts: localhost
+  gather_facts: false
+
+
+  tasks:
+    - name: Include secret files 
+      include_vars:
+        file: secrets.yml
+        name: secret
+
+    - name: run the new hello module
+      vmware_hosts_list: vcenter="{{secret.vcenter}}" username="{{secret.username}}" password="{{secret.password}}"
+      register: helloout
+
+    - name: dump test output
+      debug:
+        msg: '{{ helloout }}'
+
+
+#ansible-playbook -i esxi_hosts_list.py playbook.yml
