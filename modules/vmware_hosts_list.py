@@ -71,8 +71,8 @@ def main():
     #esxilist = esxihosts.Name
     formatedlist = []
     for esxihost in esxihosts:
-        test = str(esxihost.name)
-        formatedlist.append(test)
+        listesxi = str(esxihost.name)
+        formatedlist.append(listesxi)
 
     #all_hosts={'hosts': formatedlist}
     #all_hosts={'esxi': {'hosts': formatedlist, 'vars' : {'entity': 'EsxiHosts'}}}
@@ -87,3 +87,4 @@ if __name__== "__main__":
     main()
 
 #ansible -i test.py all --list-hosts
+#https://github.com/vmware/pyvmomi-community-samples/issues/208
