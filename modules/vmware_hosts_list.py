@@ -36,9 +36,10 @@ def main():
         
     #s=ssl.SSLContext(ssl.PROTOCOL_TLSv1)
     #s.verify_mode=ssl.CERT_NONE
-    s = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-    s.verify_mode = ssl.CERT_NONE
+    #s = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+    #s.verify_mode = ssl.CERT_NONE
     #another non good method #s = ssl._create_unverified_context()
+    s = ssl._create_unverified_context()
         
     #inifile=configparser.ConfigParser()
     #inifile.read(r'esxi_hosts_list.ini')
