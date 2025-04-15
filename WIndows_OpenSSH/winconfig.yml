@@ -1,0 +1,46 @@
+---
+- hosts: win_openssh
+  gather_facts: no
+
+  tasks:
+    - name: Create directory structure
+      ansible.windows.win_file:
+        path: C:\Temp\
+        state: directory
+
+    - name: Disconnect a mapped drive under Z command Line
+      ansible.windows.win_shell: |
+        try {
+            Get-PSDrive -Name Z -ErrorAction Stop
+            net use /persistent:no
+            net use Z: /delete
+        }
+        catch {
+            "Z drive doesn't Exists"
+        }
+
+    - name: Disconnect a mapped drive under Z 
+      ansible.windows.win_mapped_drive:
+        letter: Z
+        state: absent
+
+    - name: Create a mapped drive under Z
+      ansible.windows.win_mapped_drive:
+        letter: Z
+        path: \\192.168.34.11\sharedrive
+        state: present
+        username: vcloud-lab\vjanvi #vjanvi@vcloud-lab.com
+        password: Computer@123
+
+    - name: Copy a folder recursively where the source is on the remote host
+      ansible.windows.win_copy:
+        src: Z:\npp.8.7.9.Installer.x64.exe
+        dest: C:\Temp\
+        remote_src: true
+
+    - name: Install notepad++ from the exe
+      ansible.windows.win_package:
+        path: C:\Temp\npp.8.7.9.Installer.x64.exe
+        product_id: NotePad++
+        arguments: /S
+        state: present
